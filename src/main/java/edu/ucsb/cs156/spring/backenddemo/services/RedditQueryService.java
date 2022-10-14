@@ -18,9 +18,15 @@ public class RedditQueryService {
         restTemplate = restTemplateBuilder.build();
     }
 
-    public static final String ENDPOINT = "";
+    public static final String ENDPOINT = "https://www.reddit.com/r/{subreddit}.json";
 
     public String getJSON(String subreddit) throws HttpClientErrorException {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("User-Agent","spring-boot:cs156-team01:f22 (by /u/Ok_Dokie_Artichokie)")
+
         return "";
     }
 
