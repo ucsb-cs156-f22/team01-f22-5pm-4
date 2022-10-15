@@ -27,8 +27,6 @@ public class TidesQueryService {
 
     private final RestTemplate restTemplate;
 
-    
-
     public TidesQueryService(RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.build();
     }
