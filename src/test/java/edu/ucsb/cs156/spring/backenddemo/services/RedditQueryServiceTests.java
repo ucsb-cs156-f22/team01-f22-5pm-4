@@ -25,7 +25,7 @@ public class RedditQueryServiceTests {
 
         String subreddit = "mySubreddit";
 
-        String expectedURL = TidesQueryService.ENDPOINT.replace("{subreddit}", subreddit);
+        String expectedURL = edu.ucsb.cs156.spring.backenddemo.services.RedditQueryService.ENDPOINT.replace("{subreddit}", subreddit);;
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
 
         this.mockRestServiceServer.expect(requestTo(expectedURL))
