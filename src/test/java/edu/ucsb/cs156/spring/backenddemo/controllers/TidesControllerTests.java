@@ -41,8 +41,8 @@ public class TidesControllerTests {
   public void test_getTides() throws Exception {
   
     String fakeJsonResult="{ \"fake\" : \"result\" }";
-    String beginDate = "2013";
-    String endDate = "2020";
+    String beginDate = "20150100";
+    String endDate = "20200100";
     String station = "9411340";
     when(mockTidesQueryService.getJSON(eq(beginDate),eq(endDate), eq(station))).thenReturn(fakeJsonResult);
 
