@@ -31,7 +31,7 @@ import org.springframework.http.HttpHeaders;
 
 @WebMvcTest(value = TidesController.class)
 public class TidesControllerTests {
-  //private ObjectMapper mapper = new ObjectMapper();
+  private ObjectMapper mapper = new ObjectMapper();
   @Autowired
   private MockMvc mockMvc;
   @MockBean
@@ -53,7 +53,6 @@ public class TidesControllerTests {
         .andExpect(status().isOk()).andReturn();
 
     String responseString = response.getResponse().getContentAsString();
-
     assertEquals(fakeJsonResult, responseString);
   }
 

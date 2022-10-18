@@ -18,7 +18,7 @@ public class TidesQueryServiceTests {
     private MockRestServiceServer mockRestServiceServer;
 
     @Autowired
-    private TidesQueryService TidesQueryService;
+    private TidesQueryService tidesQueryService;
 
     @Test
     public void test_getJSON() {
@@ -37,7 +37,7 @@ public class TidesQueryServiceTests {
                 .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
                 .andRespond(withSuccess(fakeJsonResult, MediaType.APPLICATION_JSON));
 
-        String actualResult = TidesQueryService.getJSON(beginDate, endDate, station);
+        String actualResult = tidesQueryService.getJSON(beginDate, endDate, station);
         assertEquals(fakeJsonResult, actualResult);
     }
 }
