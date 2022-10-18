@@ -14,6 +14,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 
 @RestClientTest(TidesQueryService.class)
 public class TidesQueryServiceTests {
+
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
@@ -22,7 +23,6 @@ public class TidesQueryServiceTests {
 
     @Test
     public void test_getJSON() {
-
         String beginDate = "20150100";
         String endDate = "20200100";
         String station = "9411340";

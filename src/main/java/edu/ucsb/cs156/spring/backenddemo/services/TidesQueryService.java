@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
-import springfox.documentation.spring.web.json.Json;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -36,13 +35,13 @@ public class TidesQueryService {
 
     public String getJSON(String beginDate, String endDate, String station) throws HttpClientErrorException {
         log.info("beginDate={}", "endDate={}", "station={}", beginDate, endDate, station);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
         Map<String, String> uriVariables = Map.of("beginDate", beginDate, "endDate", endDate, "station", station);
-
-        HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         ResponseEntity<String> re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,
                 uriVariables);
