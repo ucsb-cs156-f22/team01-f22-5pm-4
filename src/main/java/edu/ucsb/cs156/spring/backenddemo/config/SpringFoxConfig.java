@@ -28,7 +28,6 @@ import org.springframework.boot.actuate.endpoint.web.WebEndpointsSupplier;
 import org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpointsSupplier;
 import org.springframework.boot.actuate.endpoint.web.annotation.ServletEndpointsSupplier;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  
 
 
@@ -39,7 +38,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 
 @Configuration
-@EnableWebMvc
 public class SpringFoxConfig {                                    
     @Bean
     public Docket api() { 
