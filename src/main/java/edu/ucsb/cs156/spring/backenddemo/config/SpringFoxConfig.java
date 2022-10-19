@@ -29,6 +29,7 @@ import org.springframework.boot.actuate.endpoint.web.annotation.ControllerEndpoi
 import org.springframework.boot.actuate.endpoint.web.annotation.ServletEndpointsSupplier;
 import org.springframework.util.StringUtils;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 
@@ -39,6 +40,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
  */
 
 @Configuration
+@EnableWebMvc
 public class SpringFoxConfig {                                    
     @Bean
     public Docket api() { 
@@ -49,25 +51,25 @@ public class SpringFoxConfig {
           .build();                                           
     }
 
-    @Bean
-    public WebMvcEndpointHandlerMapping webEndpointServletHandlerMapping(WebEndpointsSupplier webEndpointsSupplier, ServletEndpointsSupplier servletEndpointsSupplier, ControllerEndpointsSupplier controllerEndpointsSupplier, EndpointMediaTypes endpointMediaTypes, CorsEndpointProperties corsProperties, WebEndpointProperties webEndpointProperties, Environment environment) {
-        List<ExposableEndpoint<?>> allEndpoints = new ArrayList<ExposableEndpoint<?>>();
-        Collection<ExposableWebEndpoint> endpoints = webEndpointsSupplier.getEndpoints();
-        allEndpoints.addAll(endpoints);
-        allEndpoints.addAll(servletEndpointsSupplier.getEndpoints());
-        allEndpoints.addAll(controllerEndpointsSupplier.getEndpoints());
-        String basePath = webEndpointProperties.getBasePath();
-        EndpointMapping endpointMapping = new EndpointMapping(basePath);
-        EndpointLinksResolver linksResolver =  new EndpointLinksResolver(allEndpoints, basePath)
-        boolean shouldRegisterLinksMapping = this.shouldRegisterLinksMapping(webEndpointProperties, environment, basePath);
-        CorsConfiguration corsConfiguration = corsProperties.toCorsConfiguration();
-        return new WebMvcEndpointHandlerMapping(endpointMapping, endpoints, endpointMediaTypes, corsConfiguration, linksResolver, shouldRegisterLinksMapping);
-    }
+    // @Bean
+    // public WebMvcEndpointHandlerMapping webEndpointServletHandlerMapping(WebEndpointsSupplier webEndpointsSupplier, ServletEndpointsSupplier servletEndpointsSupplier, ControllerEndpointsSupplier controllerEndpointsSupplier, EndpointMediaTypes endpointMediaTypes, CorsEndpointProperties corsProperties, WebEndpointProperties webEndpointProperties, Environment environment) {
+    //     List<ExposableEndpoint<?>> allEndpoints = new ArrayList<ExposableEndpoint<?>>();
+    //     Collection<ExposableWebEndpoint> endpoints = webEndpointsSupplier.getEndpoints();
+    //     allEndpoints.addAll(endpoints);
+    //     allEndpoints.addAll(servletEndpointsSupplier.getEndpoints());
+    //     allEndpoints.addAll(controllerEndpointsSupplier.getEndpoints());
+    //     String basePath = webEndpointProperties.getBasePath();
+    //     EndpointMapping endpointMapping = new EndpointMapping(basePath);
+    //     EndpointLinksResolver linksResolver =  new EndpointLinksResolver(allEndpoints, basePath)
+    //     boolean shouldRegisterLinksMapping = this.shouldRegisterLinksMapping(webEndpointProperties, environment, basePath);
+    //     CorsConfiguration corsConfiguration = corsProperties.toCorsConfiguration();
+    //     return new WebMvcEndpointHandlerMapping(endpointMapping, endpoints, endpointMediaTypes, corsConfiguration, linksResolver, shouldRegisterLinksMapping);
+    // }
 
 
-    private boolean shouldRegisterLinksMapping(WebEndpointProperties webEndpointProperties, Environment environment, String basePath) {
-        return webEndpointProperties.getDiscovery().isEnabled() && (StringUtils.hasText(basePath) || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
-    }
+    // private boolean shouldRegisterLinksMapping(WebEndpointProperties webEndpointProperties, Environment environment, String basePath) {
+    //     return webEndpointProperties.getDiscovery().isEnabled() && (StringUtils.hasText(basePath) || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
+    // }
 
 }
 
