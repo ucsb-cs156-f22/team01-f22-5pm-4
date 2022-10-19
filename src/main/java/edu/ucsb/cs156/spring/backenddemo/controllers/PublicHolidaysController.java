@@ -20,14 +20,14 @@ import io.swagger.annotations.ApiParam;
 @Api(description="Country Code info from https://public.opendatasoft.com/explore/dataset/countries-codes")
 @Slf4j
 @RestController
-@RequestMapping("/api/publicholiday")
+@RequestMapping("/api/publicholidays")
 public class PublicHolidaysController {
     ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     PublicHolidayQueryService publicHolidayQueryService;
 
-    @ApiOperation(value="Get a country's public holidays")
+    @ApiOperation(value="Get a specific country's public holidays based on a specific year")
     @GetMapping("/get")
     public ResponseEntity<String> getPublicHolidays(
         @ApiParam("countryCode, e.g. 1") @RequestParam String countryCode,
