@@ -17,7 +17,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@Api(description="Country Code info from https://public.opendatasoft.com/explore/dataset/countries-codes")
+@Api()
 @Slf4j
 @RestController
 @RequestMapping("/api/publicholidays")
