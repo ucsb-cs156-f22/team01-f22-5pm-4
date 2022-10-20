@@ -12,24 +12,20 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 
-@RestClientTest(TidesQueryService.class)
-public class TidesQueryServiceTests {
+@RestClientTest(RedditQueryService.class)
+public class RedditQueryServiceTests {
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
     @Autowired
-    private TidesQueryService tidesQueryService;
+    private  RedditQueryService RedditQueryService;
 
     @Test
     public void test_getJSON() {
 
-        String beginDate = "20150100";
-        String endDate = "20200100";
-        String station = "9411340";
+        String subreddit = "mySubreddit";
 
-        String expectedURL = TidesQueryService.ENDPOINT.replace("{beginDate}", beginDate)
-                .replace("{endDate}", endDate).replace("{station}", station);
-
+        String expectedURL = edu.ucsb.cs156.spring.backenddemo.services.RedditQueryService.ENDPOINT.replace("{subreddit}", subreddit);;
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
 
         this.mockRestServiceServer.expect(requestTo(expectedURL))
@@ -37,7 +33,7 @@ public class TidesQueryServiceTests {
                 .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
                 .andRespond(withSuccess(fakeJsonResult, MediaType.APPLICATION_JSON));
 
-        String actualResult = tidesQueryService.getJSON(beginDate, endDate, station);
+        String actualResult = RedditQueryService.getJSON(subreddit);
         assertEquals(fakeJsonResult, actualResult);
     }
 }
