@@ -31,7 +31,7 @@ public class RedditControllerTests {
   RedditQueryService mockRedditQueryService;
 
   @Test
-  public void test_getCountryCodes() throws Exception {
+  public void test_getSubreddits() throws Exception {
   
     String fakeJsonResult="{ \"fake\" : \"result\" }";
     String subreddit = "UCSantaBarbara";
