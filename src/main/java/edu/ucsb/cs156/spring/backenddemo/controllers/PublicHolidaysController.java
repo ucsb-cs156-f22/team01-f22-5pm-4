@@ -30,8 +30,8 @@ public class PublicHolidaysController {
     @ApiOperation(value="Get a specific country's public holidays based on a specific year")
     @GetMapping("/get")
     public ResponseEntity<String> getPublicHolidays(
-        @ApiParam("countryCode, e.g. 1") @RequestParam String countryCode,
-        @ApiParam("year, e.g. 2019") @RequestParam String year
+        @ApiParam("2 letter country code, e.g. US, MX, CN") @RequestParam String countryCode,
+        @ApiParam("year, e.g. 2012") @RequestParam String year
     ) throws JsonProcessingException {
         log.info("getPublicHolidays: year={} countryCode={}", year, countryCode);
         String result = publicHolidayQueryService.getJSON(year, countryCode);
