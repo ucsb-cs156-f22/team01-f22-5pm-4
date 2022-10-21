@@ -31,6 +31,7 @@ public class RedditQueryServiceTests {
         this.mockRestServiceServer.expect(requestTo(expectedURL))
                 .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
                 .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+                .andExpect(header("User-Agent","spring-boot:cs156-team04:f22 (by /u/Ok_Dokie_Artichokie)"))
                 .andRespond(withSuccess(fakeJsonResult, MediaType.APPLICATION_JSON));
 
         String actualResult = RedditQueryService.getJSON(subreddit);
